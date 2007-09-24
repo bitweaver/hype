@@ -1,4 +1,5 @@
 <?php
+
 $formHypeLocations = array(
 	'hype_nav' => array(
 		'label' => 'Hype in "nav"',
@@ -59,7 +60,8 @@ if( !empty( $_REQUEST['change_prefs'] )) {
 		simple_set_value( $item . "_style", HYPE_PKG_NAME );
 	}
 
-	foreach( $formFeatures as $item ) {
+	foreach( array_keys($formFeatures) as $item ) {
+
 		simple_set_toggle( $item, HYPE_PKG_NAME );
 	}
 }

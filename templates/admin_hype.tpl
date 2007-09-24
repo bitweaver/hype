@@ -1,6 +1,8 @@
 {strip}
 {form}	
 	{legend legend="Hype"}
+		<input type="hidden" name="page" value="hype" />
+
 		{legend legend="Locations"}
 			{formhelp note="You must select one or more of the following places to display the promotion badges"}
 			{foreach from=$formHypeLocations key=item item=output}
