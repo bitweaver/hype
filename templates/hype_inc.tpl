@@ -1,8 +1,11 @@
 {strip}
-<div class="hype">
-	{include file="bitpackage:hype/digg_inc.tpl"}&nbsp;
-	{include file="bitpackage:hype/furl_inc.tpl"}&nbsp;
-	{include file="bitpackage:hype/stumbleupon_inc.tpl"}&nbsp;
-	{include file="bitpackage:hype/delicious_inc.tpl"}&nbsp;
-</div>
+{if $gContent}
+	<div class="hype">	
+		{foreach from=$gHypeSystem->getPlugins() key=id item=data}
+			{if $gHypeSystem->isPluginActive( $id, $gContent ) }
+				{include file=$data.template}&nbsp;
+			{/if}
+		{/foreach}
+	</div>
+{/if}
 {/strip}

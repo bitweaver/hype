@@ -3,7 +3,7 @@
  * base package include
  *
  * @author   nick <nick@overtsolutions.com>
- * @version  $Revision: 1.1 $
+ * @version  $Revision: 1.2 $
  * @package  hype
  */
 
@@ -20,6 +20,16 @@ if( $gBitSystem->isPackageActive( 'hype' ) ) {
 		'content_view_tpl' => 'bitpackage:hype/service_content_view_inc.tpl',
 		'content_nav_tpl'  => 'bitpackage:hype/service_content_nav_inc.tpl',
 		));
+}
+
+require_once(HYPE_PKG_PATH."HypeSystem.php");
+global $gHypeSystem;
+
+// Initialize system
+if ( empty( $gHypeSystem ) ) {
+	$gHypeSystem = new HypeSystem();
+	$gHypeSystem->scanAllPlugins();
+	$gBitSmarty->assign_by_ref('gHypeSystem', $gHypeSystem);
 }
 
 ?>

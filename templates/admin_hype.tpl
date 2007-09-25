@@ -16,17 +16,32 @@
 			{/foreach}
 		{/legend}
 		{legend legend="Services"}
-			{foreach from=$formHypeTypes key=item item=output}
-				<div class="row">
-					{formlabel label=`$output.label` for=$item}
-					{forminput}
-						{html_checkboxes name="$item" values="y" checked=$gBitSystem->getConfig($item) labels=false id=$item}
-						{assign var=item_style value=$item|cat:_style}
-						Style:&nbsp;{html_options options=$output.styles name="$item_style" id="$item_style" selected=$gBitSystem->getConfig($item_style)}
-						{formhelp note=`$output.note` page=`$output.page`}
-					{/forminput}
-				</div>
+		{jstabs}
+			{foreach from=$gHypeSystem->getPlugins() key=item item=data}
+				{jstab title=$item}
+					{assign var=toggle value="hype_`$item`"}
+					{assign var=style value="hype_`$item`_style"}
+					<div class="row">
+						{formlabel label=$data.label for="$toggle"}
+						{forminput}
+							{html_checkboxes name="$toggle" values="y" checked=$gBitSystem->getConfig($toggle) labels=false id=$toggle}
+							{assign var=item_style value=$style}
+							&nbsp;{tr}Style{/tr}:&nbsp;{html_options options=$data.styles name="$style" id="$style" selected=$gHypeSystem->getPluginStyle($item)}
+							{formhelp note=`$output.note` page=`$output.page`}
+						{/forminput}
+					</div>
+					<div class="row">
+						{formlabel label="Content Types"}
+						{forminput}
+							{assign var=guids value=$formContentTypes.$item.guid}
+							{assign var=checked value=$formContentTypes.$item.checked}
+							{html_checkboxes options=$guids value=y name="hype_`$item`_guid" separator="<br />" checked=$checked}
+							{formhelp note="Here you can select what content shows this services badge."}
+						{/forminput}
+					</div>
+				{/jstab}
 			{/foreach}
+		{/jstabs}
 		{/legend}
 	{/legend}
 

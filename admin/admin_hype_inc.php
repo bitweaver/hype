@@ -1,5 +1,7 @@
 <?php
 
+global $gHypeSystem;
+
 $formHypeLocations = array(
 	'hype_nav' => array(
 		'label' => 'Hype in "nav"',
@@ -16,54 +18,55 @@ $formHypeLocations = array(
 );
 $gBitSmarty->assign( 'formHypeLocations', $formHypeLocations );
 
-$formHypeTypes = array(
-	'hype_digg' => array(
-		'label' => 'Display digg link',
-		'note' => 'Displays the digg logo to make it easy for people to digg your content.',
-		'styles' => array(
-			'text-icon' => 'Text and Icon',
-			'icon' => 'Wide Icon',
-			'active' => 'Active Javascript'
-		),
-	),
-	'hype_stumbleupon' => array(
-		'label' => 'Display stumbleupon link',
-		'note' => 'Displays the stumbleupon logo to make it easy for people to stumbleupon your content.',
-		'styles' => array(
-			'text-icon' => 'Text and Icon',
-			'icon' => 'Wide Icon'
-		),
-	),
-	'hype_delicious' => array(
-		'label' => 'Display delicious link',
-		'note' => 'Displays the delicious logo to make it easy for people to delicious your content.',
-		'styles' => array(
-			'text-icon' => 'Text and Icon',
-			'icon' => 'Wide Icon',
-			'active' => 'Active Javascript',
-		),
-	),
-	'hype_furl' => array(
-		'label' => 'Display furl link',
-		'note' => 'Displays the furl logo to make it easy for people to furl your content.',
-		'styles' => array(
-			'text-icon' => 'Text and Icon',
-			'icon' => 'Wide Icon',
-		),
-	),
-);
-$gBitSmarty->assign( 'formHypeTypes', $formHypeTypes );
-
-if( !empty( $_REQUEST['change_prefs'] )) {
-	$formFeatures = array_merge( $formHypeLocations, $formHypeTypes );
-	foreach( $formHypeTypes as $item => $data ) {
-		simple_set_value( $item . "_style", HYPE_PKG_NAME );
-	}
-
-	foreach( array_keys($formFeatures) as $item ) {
-
-		simple_set_toggle( $item, HYPE_PKG_NAME );
+// allow selection of what packages can have ratings
+$exclude = array( 'bituser', 'tikisticky', 'pigeonholes' );
+foreach( $gLibertySystem->mContentTypes as $cType ) {
+	if( !in_array( $cType['content_type_guid'], $exclude ) ) {
+		foreach ( $gHypeSystem->getPlugins() as $hType => $hData ) {
+			$formContentTypes[$hType]['guid'][$cType['content_type_guid']]  = $cType['content_description'];
+		}
 	}
 }
+
+if( !empty( $_REQUEST['change_prefs'] )) {
+	$formFeatures = array_merge( $formHypeLocations, $gHypeSystem->getAdminToggles() );
+
+	foreach ( array_keys($formFeatures) as $item ) {
+		simple_set_toggle( $item, HYPE_PKG_NAME );
+	}
+
+	foreach ( $gHypeSystem->getAdminValues() as $item => $data ) {
+		simple_set_value( $item,  HYPE_PKG_NAME );
+	}
+
+	foreach ( $gHypeSystem->getPlugins() as $hType => $hData ) {
+		if ( isset($_REQUEST['hype_'.$hType.'_guid'] ) ) {
+			foreach ( $gLibertySystem->mContentTypes as $cType ) {
+				if (in_array($cType['content_type_guid'], $_REQUEST['hype_'.$hType.'_guid'])) {
+					$gBitSystem->storeConfig('hype_'.$hType.'-'.$cType['content_type_guid'], 'y', HYPE_PKG_NAME);
+				}
+				else {
+					$gBitSystem->storeConfig('hype_'.$hType.'-'.$cType['content_type_guid'], NULL, HYPE_PKG_NAME);
+				}
+			}
+		}
+		else {
+			// Clear them all for this type
+			foreach ( $gLibertySystem->mContentTypes as $cType ) {
+				$gBitSystem->storeConfig('hype_'.$hType.'-'.$cType['content_type_guid'], NULL, HYPE_PKG_NAME);
+			}
+		}
+	}
+
+}
+
+// check the correct packages in the package selection
+foreach( $gLibertySystem->mContentTypes as $cType ) {
+	foreach ( $gHypeSystem->getPlugins() as $hType => $hData )
+		if( $gBitSystem->isFeatureActive( 'hype_'.$hType.'_'.$cType['content_type_guid'] ) ) {
+			$formContentTypes[$hType]['checked'][] = $cType['content_type_guid'];
+		}
+}
+$gBitSmarty->assign( 'formContentTypes', $formContentTypes );
 
 ?>
