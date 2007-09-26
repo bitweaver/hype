@@ -7,6 +7,7 @@ $pPluginHash = array(
 	'label' => 'Display digg link',
 	'note' => 'Displays the digg logo to make it easy for people to digg your content.',
 	'styles' => array(
+		'small'	=> 'Small Icon',
 		'text-icon' => 'Text and Icon',
 		'icon' => 'Wide Icon',
 		'active' => 'Active Javascript'

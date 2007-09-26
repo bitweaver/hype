@@ -7,6 +7,7 @@ $pPluginHash = array(
 	'label' => 'Display delicious link',
 	'note' => 'Displays the delicious logo to make it easy for people to save your content on delicious.',
 	'styles' => array(
+		'small' => 'Small Icon',
 		'text-icon' => 'Text and Icon',
 		'icon' => 'Wide Icon',
 		'active' => 'Active Javascript'

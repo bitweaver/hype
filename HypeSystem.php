@@ -34,7 +34,7 @@ class HypeSystem {
 		global $gBitSystem;
 		if ( $gBitSystem->isFeatureActive( 'hype_'.$pPluginName ) ) {
 			if ( !empty( $gContent->mContentTypeGuid ) ) {
-				return $gBitSystem->isFeatureActive( 'hype_'.$pPluginName.'_'.$gContent->mContentTypeGuid );
+				return $gBitSystem->isFeatureActive( 'hype_'.$pPluginName.'-'.$gContent->mContentTypeGuid );
 			}
 		}
 		return false;

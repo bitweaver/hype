@@ -7,6 +7,7 @@ $pPluginHash = array(
 	'label' => 'Display furl link',
 	'note' => 'Displays the furl logo to make it easy for people to furl your content.',
 	'styles' => array(
+		'small' => 'Small Icon',
 		'text-icon' => 'Text and Icon',
 		'icon' => 'Wide Icon',
 		'active' => 'Active Javascript'

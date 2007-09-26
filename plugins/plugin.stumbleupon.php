@@ -7,6 +7,7 @@ $pPluginHash = array(
 	'label' => 'Display stumbleupon link',
 	'note' => 'Displays the stumbleupon logo to make it easy for people to stumbleupon your content.',
 	'styles' => array(
+		'small'	=> 'Small Icon',
 		'text-icon' => 'Text and Icon',
 		'icon' => 'Wide Icon',
 		),
