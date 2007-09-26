@@ -38,7 +38,7 @@ if( !empty( $_REQUEST['change_prefs'] )) {
 	foreach ( $gHypeSystem->getAdminValues() as $item => $data ) {
 		simple_set_value( $item,  HYPE_PKG_NAME );
 	}
-
+	vd($_REQUEST);
 	foreach ( $gHypeSystem->getPlugins() as $hType => $hData ) {
 		if ( isset($_REQUEST['hype_'.$hType.'_guid'] ) ) {
 			foreach ( $gLibertySystem->mContentTypes as $cType ) {
@@ -63,7 +63,7 @@ if( !empty( $_REQUEST['change_prefs'] )) {
 // check the correct packages in the package selection
 foreach( $gLibertySystem->mContentTypes as $cType ) {
 	foreach ( $gHypeSystem->getPlugins() as $hType => $hData )
-		if( $gBitSystem->isFeatureActive( 'hype_'.$hType.'_'.$cType['content_type_guid'] ) ) {
+		if( $gBitSystem->isFeatureActive( 'hype_'.$hType.'-'.$cType['content_type_guid'] ) ) {
 			$formContentTypes[$hType]['checked'][] = $cType['content_type_guid'];
 		}
 }
