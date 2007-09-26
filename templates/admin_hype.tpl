@@ -26,8 +26,14 @@
 						{forminput}
 							{html_checkboxes name="$toggle" values="y" checked=$gBitSystem->getConfig($toggle) labels=false id=$toggle}
 							{assign var=item_style value=$style}
-							&nbsp;{tr}Style{/tr}:&nbsp;{html_options options=$data.styles name="$style" id="$style" selected=$gHypeSystem->getPluginStyle($item)}
-							{formhelp note=`$output.note` page=`$output.page`}
+							{formhelp note=`$data.note`}
+						{/forminput}
+					</div>
+					<div class="row">
+						{formlabel label="Style" for=$style}
+						{forminput}
+							{html_options options=$data.styles name="$style" id="$style" selected=$gHypeSystem->getPluginStyle($item)}
+							{formhelp note="Select the style to use for this service."}
 						{/forminput}
 					</div>
 					<div class="row">
@@ -36,7 +42,7 @@
 							{assign var=guids value=$formContentTypes.$item.guid}
 							{assign var=checked value=$formContentTypes.$item.checked}
 							{html_checkboxes options=$guids value=y name="hype_`$item`_guid" separator="<br />" checked=$checked}
-							{formhelp note="Here you can select what content shows this services badge."}
+							{formhelp note="Here you can select which content types show this services badge."}
 						{/forminput}
 					</div>
 				{/jstab}

@@ -38,7 +38,6 @@ if( !empty( $_REQUEST['change_prefs'] )) {
 	foreach ( $gHypeSystem->getAdminValues() as $item => $data ) {
 		simple_set_value( $item,  HYPE_PKG_NAME );
 	}
-	vd($_REQUEST);
 	foreach ( $gHypeSystem->getPlugins() as $hType => $hData ) {
 		if ( isset($_REQUEST['hype_'.$hType.'_guid'] ) ) {
 			foreach ( $gLibertySystem->mContentTypes as $cType ) {
