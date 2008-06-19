@@ -1,5 +1,12 @@
 <?php
+/**
+ * @version $Header: /cvsroot/bitweaver/_bit_hype/HypeSystem.php,v 1.3 2008/06/19 04:44:09 lsces Exp $
+ * @package hotwords
+ */
 
+/**
+ * @package hotwords
+ */
 class HypeSystem {
 
 	var $mPlugins = array();
