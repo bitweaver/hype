@@ -1,4 +1,9 @@
 <?php
+/**
+ * @version $Header: /cvsroot/bitweaver/_bit_hype/plugins/plugin.furl.php,v 1.3 2008/06/19 05:11:03 lsces Exp $
+ * @package hype
+ * @subpackage plugins
+ */
 
 global $gHypeSystem;
 
