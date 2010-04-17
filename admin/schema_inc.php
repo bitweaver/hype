@@ -6,4 +6,8 @@ $gBitInstaller->registerPackageInfo( HYPE_PKG_NAME, array(
 	'license' => '<a href="http://www.gnu.org/licenses/licenses.html#LGPL">LGPL</a>',
 ) );
 
-?>
+// Requirements
+$gBitInstaller->registerRequirements( HYPE_PKG_NAME, array(
+	'liberty' => array( 'min' => '2.1.4' ),
+));
+
