@@ -23,7 +23,7 @@ $exclude = array( 'bituser', 'tikisticky', 'pigeonholes' );
 foreach( $gLibertySystem->mContentTypes as $cType ) {
 	if( !in_array( $cType['content_type_guid'], $exclude ) ) {
 		foreach ( $gHypeSystem->getPlugins() as $hType => $hData ) {
-			$formContentTypes[$hType]['guid'][$cType['content_type_guid']]  = $cType['content_description'];
+			$formContentTypes[$hType]['guid'][$cType['content_type_guid']]  = $gLibertySystem->getContentTypeName( $cType['content_type_guid'] );
 		}
 	}
 }
