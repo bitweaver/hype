@@ -3,7 +3,7 @@
  * base package include
  *
  * @author   nick <nick@overtsolutions.com>
- * @version  $Revision: 1.2 $
+ * @version  $Revision$
  * @package  hype
  */
 

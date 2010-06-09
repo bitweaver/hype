@@ -1,6 +1,6 @@
 <?php
 /**
- * @version $Header: /cvsroot/bitweaver/_bit_hype/HypeSystem.php,v 1.4 2008/06/19 05:11:03 lsces Exp $
+ * @version $Header$
  * @package hype
  */
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * @version $Header: /cvsroot/bitweaver/_bit_hype/plugins/plugin.stumbleupon.php,v 1.3 2008/06/19 05:11:03 lsces Exp $
+ * @version $Header$
  * @package hype
  * @subpackage plugins
  */
