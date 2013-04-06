@@ -7,10 +7,10 @@
 			{formhelp note="You must select one or more of the following places to display the promotion badges"}
 			{foreach from=$formHypeLocations key=item item=output}
 				<div class="control-group">
-					{formlabel label=`$output.label` for=$item}
+					{formlabel label=$output.label for=$item}
 					{forminput}
 						{html_checkboxes name="$item" values="y" checked=$gBitSystem->getConfig($item) labels=false id=$item}
-						{formhelp note=`$output.note` page=`$output.page`}
+						{formhelp note=$output.note page=$output.page}
 					{/forminput}
 				</div>
 			{/foreach}
@@ -26,7 +26,7 @@
 						{forminput}
 							{html_checkboxes name="$toggle" values="y" checked=$gBitSystem->getConfig($toggle) labels=false id=$toggle}
 							{assign var=item_style value=$style}
-							{formhelp note=`$data.note`}
+							{formhelp note=$data.note}
 						{/forminput}
 					</div>
 					<div class="control-group">
