@@ -6,7 +6,7 @@
 		{legend legend="Locations"}
 			{formhelp note="You must select one or more of the following places to display the promotion badges"}
 			{foreach from=$formHypeLocations key=item item=output}
-				<div class="control-group">
+				<div class="form-group">
 					{formlabel label=$output.label for=$item}
 					{forminput}
 						{html_checkboxes name="$item" values="y" checked=$gBitSystem->getConfig($item) labels=false id=$item}
@@ -21,7 +21,7 @@
 				{jstab title=$item}
 					{assign var=toggle value="hype_`$item`"}
 					{assign var=style value="hype_`$item`_style"}
-					<div class="control-group">
+					<div class="form-group">
 						{formlabel label=$data.label for="$toggle"}
 						{forminput}
 							{html_checkboxes name="$toggle" values="y" checked=$gBitSystem->getConfig($toggle) labels=false id=$toggle}
@@ -29,14 +29,14 @@
 							{formhelp note=$data.note}
 						{/forminput}
 					</div>
-					<div class="control-group">
+					<div class="form-group">
 						{formlabel label="Style" for=$style}
 						{forminput}
 							{html_options options=$data.styles name="$style" id="$style" selected=$gHypeSystem->getPluginStyle($item)}
 							{formhelp note="Select the style to use for this service."}
 						{/forminput}
 					</div>
-					<div class="control-group">
+					<div class="form-group">
 						{formlabel label="Content Types"}
 						{forminput}
 							{assign var=guids value=$formContentTypes.$item.guid}
@@ -51,7 +51,7 @@
 		{/legend}
 	{/legend}
 
-	<div class="control-group submit">
+	<div class="form-group submit">
 		<input type="submit" class="btn btn-default" name="change_prefs" value="{tr}Change preferences{/tr}" />
 	</div>
 {/form}
